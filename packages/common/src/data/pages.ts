@@ -4,7 +4,7 @@ import { range } from '~/misc/utils';
 export class Pages<T> {
   private pages: Map<number, T[]> = new Map();
 
-  constructor(public lastPageSize: number = 10) { }
+  constructor(public lastPageSize: number = 10) {}
 
   public get length() {
     return this.size;
@@ -178,7 +178,7 @@ export class Pages<T> {
     if (elemIndex > Math.max(page.length, 1)) {
       throw new Error(
         `PagedBuffer: failed to insert to ${elemIndex} at page ${pageIndex}:` +
-        ` index is out of range (page size: ${page.length})`
+          ` index is out of range (page size: ${page.length})`,
       );
     }
 

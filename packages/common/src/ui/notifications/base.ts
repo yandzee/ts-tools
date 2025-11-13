@@ -20,10 +20,7 @@ export class Notifications {
 
     impl.onNotificationHide((descId, timeouted) => {
       console.log(`NotificationsUI: notification hide`, descId, timeouted);
-      const counter = Math.max(
-        0,
-        (this.descriptorCounters.get(descId) || 0) - 1
-      );
+      const counter = Math.max(0, (this.descriptorCounters.get(descId) || 0) - 1);
 
       if (counter === 0) {
         this.descriptors.delete(descId);
@@ -79,8 +76,7 @@ export class Notifications {
   public getDescriptor(msg: any): NotificationDescriptor | null {
     if (msg == null || !isRecord(msg)) return null;
 
-    const chelnokId =
-      msg.chelnokId || msg.detail?.chelnokId || (msg.opts != null && msg.id);
+    const chelnokId = msg.chelnokId || msg.detail?.chelnokId || (msg.opts != null && msg.id);
 
     if (!!chelnokId && isString(chelnokId)) {
       return this.descriptors.get(chelnokId) ?? null;

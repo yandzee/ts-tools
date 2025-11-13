@@ -5,8 +5,8 @@ import { defineConfig } from '@repo/tsdown';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-	entry: [resolve(__dirname, 'src/loader.ts')],
-	dts: {
-		sourcemap: false,
-	},
+  entry: [resolve(__dirname, 'src/loader.ts')],
+  dts: {
+    sourcemap: false,
+  },
 });

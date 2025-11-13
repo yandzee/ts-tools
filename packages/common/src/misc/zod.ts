@@ -2,23 +2,13 @@ import { z } from 'zod';
 
 const jsonKey = z.union([z.string(), z.number(), z.symbol()]);
 
-const literalSchema = z.union([
-  z.string(),
-  z.number(),
-  z.boolean(),
-  z.null(),
-  z.undefined(),
-]);
+const literalSchema = z.union([z.string(), z.number(), z.boolean(), z.null(), z.undefined()]);
 
 export type Literal = z.infer<typeof literalSchema>;
 export type Json = Literal | { [key: string]: Json } | Json[];
 
 const jsonSchema: z.ZodType<Json> = z.lazy(() =>
-  z.union([
-    literalSchema,
-    z.array(jsonSchema),
-    z.record(jsonKey, jsonSchema),
-  ])
+  z.union([literalSchema, z.array(jsonSchema), z.record(jsonKey, jsonSchema)]),
 );
 
 export type JsonSchema = z.infer<typeof jsonSchema>;

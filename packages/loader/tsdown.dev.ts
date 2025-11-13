@@ -5,10 +5,10 @@ import { defineConfig } from '@repo/tsdown';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-	entry: [resolve(__dirname, 'src/loader.ts')],
-	watch: true,
-	ignoreWatch: ['tsdown.*'],
-	dts: {
-		sourcemap: true,
-	},
+  entry: [resolve(__dirname, 'src/loader.ts')],
+  watch: true,
+  ignoreWatch: ['tsdown.*'],
+  dts: {
+    sourcemap: true,
+  },
 });

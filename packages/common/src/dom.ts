@@ -23,7 +23,7 @@ export const isMultilineTextOperation = (e: InputEvent): boolean => {
 };
 
 export const getSelectionPosition = (
-  elem: Element | EventTarget | null | undefined
+  elem: Element | EventTarget | null | undefined,
 ): Range | null => {
   const selection = window.getSelection();
   if (selection == null) return null;
@@ -52,9 +52,7 @@ export const setRangeSelection = (range: Range): boolean => {
   return true;
 };
 
-export const setCursorToEndOf = (
-  elem: Element | EventTarget | null | undefined
-) => {
+export const setCursorToEndOf = (elem: Element | EventTarget | null | undefined) => {
   if (elem == null || !(elem instanceof Element)) return;
   if (document.createRange == null) throw new Error('createRange is undefined');
 
@@ -75,11 +73,7 @@ export const isEnterKeyPressed = (e: KeyboardEvent): boolean => {
 export const watchAttributes = (
   elem: Element,
   attrs: string[],
-  callback: (
-    attr: string,
-    newValue: string | null,
-    oldValue: string | null
-  ) => void
+  callback: (attr: string, newValue: string | null, oldValue: string | null) => void,
 ): (() => void) => {
   const oldValues = new Map<string, string | null>();
 

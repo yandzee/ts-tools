@@ -29,10 +29,7 @@ export interface NotificationHandle {
   hide: () => boolean;
 }
 
-export type NotificationHideCallback = (
-  descId: string,
-  timeouted: boolean
-) => void;
+export type NotificationHideCallback = (descId: string, timeouted: boolean) => void;
 
 export interface NotificationsImpl {
   show: (n: NotificationDescriptor) => NotificationHandle;

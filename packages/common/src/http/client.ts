@@ -16,33 +16,21 @@ export type RequestConfig = Partial<Omit<Options, 'fetch'>>;
 export type BeforeRequestFn = () => void;
 
 export class HttpClient {
-  constructor(private readonly opts: Options) { }
+  constructor(private readonly opts: Options) {}
 
   public async get(path: string, cfg?: RequestConfig): Promise<HTTPResult> {
     return await this.doRequest(HttpMethod.Get, path, null, cfg);
   }
 
-  public async post(
-    path: string,
-    data: any,
-    cfg?: RequestConfig
-  ): Promise<HTTPResult> {
+  public async post(path: string, data: any, cfg?: RequestConfig): Promise<HTTPResult> {
     return this.doRequest(HttpMethod.Post, path, data, cfg);
   }
 
-  public async put(
-    path: string,
-    data: any,
-    cfg?: RequestConfig
-  ): Promise<HTTPResult> {
+  public async put(path: string, data: any, cfg?: RequestConfig): Promise<HTTPResult> {
     return this.doRequest(HttpMethod.Put, path, data, cfg);
   }
 
-  public async delete(
-    path: string,
-    data: any,
-    cfg?: RequestConfig
-  ): Promise<HTTPResult> {
+  public async delete(path: string, data: any, cfg?: RequestConfig): Promise<HTTPResult> {
     return this.doRequest(HttpMethod.Delete, path, data, cfg);
   }
 
@@ -54,7 +42,7 @@ export class HttpClient {
     method: HttpMethod,
     path: string,
     data?: any,
-    cfg?: RequestConfig
+    cfg?: RequestConfig,
   ): Promise<HTTPResult> {
     const [req, beforeRequest] = this.buildRequest(method, path, data, cfg);
     beforeRequest?.();
@@ -67,7 +55,7 @@ export class HttpClient {
     method: HttpMethod,
     path: string,
     data?: any,
-    cfg?: RequestConfig
+    cfg?: RequestConfig,
   ): [Request, BeforeRequestFn | null] {
     const headers = new Headers();
 
@@ -78,10 +66,7 @@ export class HttpClient {
 
     if (this.opts.cors) {
       headers.append('access-control-request-method', method);
-      headers.append(
-        'access-control-request-headers',
-        'content-type, content-length'
-      );
+      headers.append('access-control-request-headers', 'content-type, content-length');
     }
 
     let body = data;
@@ -106,10 +91,7 @@ export class HttpClient {
       controller = new AbortController();
 
       beforeRequest = () => {
-        setTimeout(
-          () => controller?.abort(`timeout of ${timeout}ms is reached`),
-          timeout
-        );
+        setTimeout(() => controller?.abort(`timeout of ${timeout}ms is reached`), timeout);
       };
     }
 
@@ -126,17 +108,11 @@ export class HttpClient {
     return [req, beforeRequest];
   }
 
-  private assignHeaders(
-    to: Headers,
-    ...rest: (HeadersInit | null | undefined)[]
-  ) {
+  private assignHeaders(to: Headers, ...rest: (HeadersInit | null | undefined)[]) {
     HttpClient.assignHeaders(to, ...rest);
   }
 
-  public static assignHeaders(
-    to: Headers,
-    ...rest: (HeadersInit | null | undefined)[]
-  ) {
+  public static assignHeaders(to: Headers, ...rest: (HeadersInit | null | undefined)[]) {
     for (const h of rest) {
       if (!h) continue;
 
@@ -162,10 +138,7 @@ export class HttpClient {
     }
   }
 
-  private ensureRequestUrl(
-    s: string,
-    ...opts: (RequestConfig | undefined)[]
-  ): string {
+  private ensureRequestUrl(s: string, ...opts: (RequestConfig | undefined)[]): string {
     // NOTE: Return original s if its dedicated absolute url.
     try {
       new URL(s);
@@ -187,9 +160,7 @@ export class HttpClient {
       rawBaseURL = this.opts.baseURL || '';
     }
 
-    rawBaseURL = rawBaseURL.endsWith('/')
-      ? rawBaseURL.slice(0, -1)
-      : rawBaseURL;
+    rawBaseURL = rawBaseURL.endsWith('/') ? rawBaseURL.slice(0, -1) : rawBaseURL;
     const path = s.startsWith('/') ? s.slice(1) : s;
 
     const final = `${rawBaseURL}/${path}`;

@@ -15,12 +15,9 @@ export const isObject = (d: any): boolean => {
 
 export const isNormalNumber = (num: number): boolean => {
   return Number.isFinite(num) && !Number.isNaN(num);
-}
+};
 
-export const isRecord = <T = any>(
-  v: any,
-  of?: (v: any) => v is T
-): v is Record<string, T> => {
+export const isRecord = <T = any>(v: any, of?: (v: any) => v is T): v is Record<string, T> => {
   // if (typeof v !== 'object' || v == null || Array.isArray(v)) return false;
   if (!isObject(v)) return false;
   if (v.constructor != null && v.constructor !== Object) return false;

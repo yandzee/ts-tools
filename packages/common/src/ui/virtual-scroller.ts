@@ -20,9 +20,7 @@ export class VirtualScroller {
 
   constructor(public readonly props: VScrollerProps) {
     if (props.itemHeight === 0) {
-      throw new Error(
-        `VirtualScroller: cannot create instance with zero item height`
-      );
+      throw new Error(`VirtualScroller: cannot create instance with zero item height`);
     }
   }
 
@@ -43,27 +41,19 @@ export class VirtualScroller {
     const currentIndices = new Set(this.lastPositions);
 
     // NOTE: Case when currentItems already contain required items
-    if (
-      currentIndices.has(firstVisibleIdx) &&
-      currentIndices.has(lastVisibleIdx)
-    ) {
+    if (currentIndices.has(firstVisibleIdx) && currentIndices.has(lastVisibleIdx)) {
       return [this.lastPositions, false];
     }
 
     // NOTE: The opposite case: when no required items positioned
-    if (
-      !currentIndices.has(firstVisibleIdx) &&
-      !currentIndices.has(lastVisibleIdx)
-    ) {
+    if (!currentIndices.has(firstVisibleIdx) && !currentIndices.has(lastVisibleIdx)) {
       this.lastPositions = this.computePositions(delta);
       return [this.lastPositions, true];
     }
 
     currentIndices.delete(VirtualScroller.INVISIBLE_VIRTUAL_INDEX);
     const maxPossibleIdx = Math.max(0, this.props.amount - 1);
-    const requiredIndices = new Set(
-      range2(firstVisibleIdx, lastVisibleIdx + 1)
-    );
+    const requiredIndices = new Set(range2(firstVisibleIdx, lastVisibleIdx + 1));
 
     let offset = 1;
 
@@ -124,9 +114,7 @@ export class VirtualScroller {
     this.lastHeight = height;
 
     const poolSizeModifier = this.props.poolSize || ((n) => n);
-    const poolSize = poolSizeModifier(
-      Math.ceil(height / this.props.itemHeight)
-    );
+    const poolSize = poolSizeModifier(Math.ceil(height / this.props.itemHeight));
 
     if (this.poolSize === poolSize) return [this.lastPositions, false];
     this.poolSize = poolSize;
@@ -155,8 +143,7 @@ export class VirtualScroller {
         // NOTE: Use remaining items and point them before firstVisibleIdx
         while (i < this.poolSize) {
           vidx = maxPossibleIdx - i;
-          positions[i] =
-            vidx < 0 ? VirtualScroller.INVISIBLE_VIRTUAL_INDEX : vidx;
+          positions[i] = vidx < 0 ? VirtualScroller.INVISIBLE_VIRTUAL_INDEX : vidx;
           i += 1;
         }
 
@@ -175,10 +162,7 @@ export class VirtualScroller {
         while (i >= 0) {
           vidx = this.poolSize - 1 - i;
 
-          positions[i] =
-            vidx > maxPossibleIdx
-              ? VirtualScroller.INVISIBLE_VIRTUAL_INDEX
-              : vidx;
+          positions[i] = vidx > maxPossibleIdx ? VirtualScroller.INVISIBLE_VIRTUAL_INDEX : vidx;
 
           i -= 1;
         }
@@ -193,7 +177,7 @@ export class VirtualScroller {
   private getVisibleIndices(): [number, number] {
     const firstVisibleIdx = Math.floor(this.lastScroll / this.props.itemHeight);
     const itemsInScrollAndViewport = Math.ceil(
-      (this.lastHeight + this.lastScroll) / this.props.itemHeight
+      (this.lastHeight + this.lastScroll) / this.props.itemHeight,
     );
     const lastVisibleIdx = Math.max(0, itemsInScrollAndViewport - 1);
 

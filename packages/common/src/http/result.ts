@@ -51,9 +51,7 @@ export class HTTPResult<T = any> {
   }
 
   public get errorMessage(): string {
-    return this.isConnectionError
-      ? 'Network error occured'
-      : this.response.statusText;
+    return this.isConnectionError ? 'Network error occured' : this.response.statusText;
   }
 
   public get headers(): Response['headers'] {
@@ -80,7 +78,7 @@ export class HTTPResult<T = any> {
     try {
       const url = new URL(this.responseUrl);
       return url.pathname;
-    } catch (_err) { }
+    } catch (_err) {}
 
     return '';
   }
@@ -152,9 +150,7 @@ export class HTTPResult<T = any> {
     return r;
   }
 
-  public async mapAsync<D>(
-    fn: (_: T | null) => D | Promise<D>
-  ): Promise<HTTPResult<D>> {
+  public async mapAsync<D>(fn: (_: T | null) => D | Promise<D>): Promise<HTTPResult<D>> {
     const d = fn(this.extractedData);
     const data = d instanceof Promise ? await d : d;
 
@@ -169,9 +165,7 @@ export class HTTPResult<T = any> {
 
   public expect(msg?: string): T {
     if (this.data == null) {
-      throw new Error(
-        `HTTPResult: data is null: ${msg || 'expected to be non null'}`
-      );
+      throw new Error(`HTTPResult: data is null: ${msg || 'expected to be non null'}`);
     }
 
     return this.data;
