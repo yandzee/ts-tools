@@ -4,7 +4,9 @@
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
+    "skipLibCheck": true,
 
+    "noUncheckedSideEffectImports": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
 
@@ -15,13 +17,24 @@
     "noFallthroughCasesInSwitch": false,
     "noPropertyAccessFromIndexSignature": true,
 
+    "erasableSyntaxOnly": false,
+    "useDefineForClassFields": false,
+    "noFallthroughCasesInSwitch": true,
+
     "strict": true,
+    "noEmit": true,
     "isolatedModules": true,
+    "isolatedDeclarations": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "verbatimModuleSyntax": true,
+    "moduleResolution": "bundler",
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   },
   "exclude": ["**/node_modules", "**/.*"]
 }

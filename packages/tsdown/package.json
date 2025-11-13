@@ -1,0 +1,13 @@
+{
+  "name": "@repo/tsdown",
+  "version": "0.0.1",
+  "packageManager": "pnpm@10.18.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./tsdown.base.ts"
+  },
+  "dependencies": {
+    "tsdown": "^0.16.4"
+  }
+}

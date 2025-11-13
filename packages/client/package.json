@@ -1,0 +1,88 @@
+{
+  "name": "@yandzee/client",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc --watch --noEmit",
+    "build:dev": "tsdown -c tsdown.dev.ts",
+    "build": "tsdown -c tsdown.build.ts",
+    "check:types": "tsc --noEmit",
+    "check:lint": "biome check",
+    "check:test": "vitest"
+  },
+  "exports": {
+    "./data/page": {
+      "default": "./dist/data/page.js",
+      "types": "./dist/data/page.d.ts"
+    },
+    "./data/pages": {
+      "default": "./dist/data/pages.js",
+      "types": "./dist/data/pages.d.ts"
+    },
+    "./disposer": {
+      "default": "./dist/disposer.js",
+      "types": "./dist/disposer.d.ts"
+    },
+    "./dom": {
+      "default": "./dist/dom.js",
+      "types": "./dist/dom.d.ts"
+    },
+    "./events": {
+      "default": "./dist/events.js",
+      "types": "./dist/events.d.ts"
+    },
+    "./http": {
+      "default": "./dist/http/index.js",
+      "types": "./dist/http/index.d.ts"
+    },
+    "./http/api": {
+      "default": "./dist/http/api.js",
+      "types": "./dist/http/api.d.ts"
+    },
+    "./http/client": {
+      "default": "./dist/http/client.js",
+      "types": "./dist/http/client.d.ts"
+    },
+    "./http/result": {
+      "default": "./dist/http/result.js",
+      "types": "./dist/http/result.d.ts"
+    },
+    "./loader": {
+      "default": "./dist/loader.js",
+      "types": "./dist/loader.d.ts"
+    },
+    "./timer": {
+      "default": "./dist/timer.js",
+      "types": "./dist/timer.d.ts"
+    },
+    "./types": {
+      "default": "./dist/types.js",
+      "types": "./dist/types.d.ts"
+    },
+    "./utils": {
+      "default": "./dist/utils/index.js",
+      "types": "./dist/utils/index.d.ts"
+    },
+    "./zod/date": {
+      "default": "./dist/zod/date.js",
+      "types": "./dist/zod/date.d.ts"
+    }
+  },
+  "devDependencies": {
+    "@repo/tsconfig": "workspace:^",
+    "@repo/tsdown": "workspace:^",
+    "@types/node": "^24.10.2",
+    "tsdown": "^0.16.4",
+    "typescript": "~5.9.3",
+    "vite": "npm:rolldown-vite@7.2.2",
+    "vitest": "^4.0.8"
+  },
+  "dependencies": {
+    "es-toolkit": "^1.41.0",
+    "zod": "^4.1.13"
+  }
+}
