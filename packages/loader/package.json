@@ -1,8 +1,11 @@
 {
-  "name": "@repo/loader",
+  "name": "@yandzee/loader",
   "private": false,
   "version": "0.0.1",
   "type": "module",
+  "main": "./dist/loader.js",
+  "module": "./dist/loader.mjs",
+  "types": "./dist/loader.d.ts",
   "scripts": {
     "dev": "tsdown --config tsdown.dev.ts",
     "build": "tsdown --config tsdown.build.ts",
