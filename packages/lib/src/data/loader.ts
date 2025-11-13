@@ -1,8 +1,8 @@
 // Author: Renat Tuktarov <yandzeek@gmail.com>, 2025
 
-import { retry, handleWhen, RetryPolicy } from 'cockatiel';
 import { EventEmitter } from '~/misc/event-emitter';
 import { Timer } from '~/misc/timer';
+import { dumb, type Retrier } from '~/misc/retry';
 
 export enum Event {
   DataReady = 'data-ready',
@@ -35,7 +35,7 @@ export type Options<T, Q> = {
   cacheReader?: (q: Q) => T | null;
   cacheWriter?: (d: T, q: Q) => void;
   caching?: boolean;
-  retrier?: RetryPolicy;
+  retrier?: Retrier;
 };
 
 export class Loader<T, Q, E = Error> extends EventEmitter<Events<T, Q, E>> {
@@ -68,12 +68,7 @@ export class Loader<T, Q, E = Error> extends EventEmitter<Events<T, Q, E>> {
         .onTimeout(() => this.emit(Event.GracePeriodEnded, q));
     }
 
-    const retrier =
-      this.opts?.retrier ??
-      retry(
-        handleWhen((_: Error) => false),
-        { maxAttempts: 1 }
-      );
+    const retrier = this.opts?.retrier ?? dumb();
 
     return retrier
       .execute((ctx) => {
@@ -96,7 +91,7 @@ export class Loader<T, Q, E = Error> extends EventEmitter<Events<T, Q, E>> {
       .finally(() => {
         if (graceTimer != null) {
           graceTimer.stop();
-          graceTimer.offAllEvents();
+          graceTimer.offEverything();
         }
 
         this.emit(Event.LoadingFinished, q);
@@ -108,9 +103,7 @@ export class Loader<T, Q, E = Error> extends EventEmitter<Events<T, Q, E>> {
     return this;
   }
 
-  public onGracePeriodStarted(
-    fn: Events<T, Q, E>[Event.GracePeriodStarted]
-  ): this {
+  public onGracePeriodStarted(fn: Events<T, Q, E>[Event.GracePeriodStarted]): this {
     this.on(Event.GracePeriodStarted, fn);
     return this;
   }

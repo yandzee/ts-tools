@@ -68,7 +68,12 @@ export class EventEmitter<T extends Handlers<any>> {
     return this.lastDisposerFn;
   }
 
-  public off<K extends keyof T>(event: K, handler?: T[K] | null) {
+  public off<K extends keyof T>(event?: K, handler?: T[K] | null) {
+    if (event == null) {
+      this.offEverything();
+      return;
+    }
+
     if (!handler) {
       this.onHandlers.get(event)?.clear();
       this.onceHandlers.get(event)?.clear();
@@ -88,18 +93,18 @@ export class EventEmitter<T extends Handlers<any>> {
       return;
     }
 
-    onHandlers?.forEach(fn => fn(...args));
+    onHandlers?.forEach((fn) => fn(...args));
     if (onceHandlers) {
       // NOTE: Handlers should be flushed first to avoid recursive calls in case
       // NOTE: if any of that handlers called .emit() again
       const handlers = new Set(onceHandlers);
       onceHandlers.clear();
 
-      handlers.forEach(fn => fn(...args));
+      handlers.forEach((fn) => fn(...args));
     }
   }
 
-  public offAllEvents() {
+  public offEverything() {
     this.onHandlers.clear();
     this.onceHandlers.clear();
   }
@@ -147,7 +152,7 @@ export class EventEmitter<T extends Handlers<any>> {
       return;
     }
 
-    cached.forEach(args => handler(...args));
+    cached.forEach((args) => handler(...args));
     this.cachedEvents.set(evt, []);
   }
 
