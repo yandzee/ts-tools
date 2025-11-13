@@ -29,6 +29,9 @@ importers:
       '@types/node':
         specifier: ^24.10.1
         version: 24.10.1
+      es-toolkit:
+        specifier: ^1.41.0
+        version: 1.41.0
     devDependencies:
       typescript:
         specifier: ~5.9.3
@@ -526,6 +529,9 @@ packages:
 
   es-module-lexer@1.7.0:
     resolution: {integrity: sha512-jEQoCwk8hyb2AZziIOLhDqpm5+2ww5uIE6lkO/6jcOCusfk6LhMHpXXfBLXTZ7Ydyt0j4VoUQv6uGNYbdW+kBA==}
+
+  es-toolkit@1.41.0:
+    resolution: {integrity: sha512-bDd3oRmbVgqZCJS6WmeQieOrzpl3URcWBUVDXxOELlUW2FuW+0glPOz1n0KnRie+PdyvUZcXz2sOn00c6pPRIA==}
 
   esbuild@0.25.12:
     resolution: {integrity: sha512-bbPBYYrtZbkt6Os6FiTLCTFxvq4tt3JKall1vRwshA3fdVztsLAatFaZobhkBC8/BrPetoa0oksYoKXoG4ryJg==}
@@ -1118,6 +1124,8 @@ snapshots:
   detect-libc@2.1.2: {}
 
   es-module-lexer@1.7.0: {}
+
+  es-toolkit@1.41.0: {}
 
   esbuild@0.25.12:
     optionalDependencies:
