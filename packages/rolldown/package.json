@@ -1,0 +1,8 @@
+{
+  "name": "@repo/rolldown",
+  "packageManager": "pnpm@10.18.0",
+  "type": "module",
+  "exports": {
+    "./*": "./*.js"
+  }
+}
