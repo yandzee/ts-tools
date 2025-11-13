@@ -1,0 +1,11 @@
+{
+  "name": "@repo/tsdown",
+  "packageManager": "pnpm@10.18.1",
+  "type": "module",
+  "exports": {
+    ".": "./tsdown.base.ts"
+  },
+  "dependencies": {
+    "tsdown": "^0.16.4"
+  }
+}

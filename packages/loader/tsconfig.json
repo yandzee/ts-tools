@@ -1,0 +1,13 @@
+{
+  "extends": "@repo/tsconfig/base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "dist",
+
+    "module": "es2022",
+    "moduleResolution": "bundler",
+    "target": "es2022",
+
+    "types": ["node"]
+  }
+}
