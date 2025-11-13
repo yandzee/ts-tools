@@ -1,5 +1,5 @@
 {
-  "name": "lib",
+  "name": "@repo/common",
   "private": true,
   "version": "0.0.0",
   "type": "module",
