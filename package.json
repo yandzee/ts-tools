@@ -1,11 +1,12 @@
 {
   "name": "the-last-of-guss",
-  "packageManager": "pnpm@10.18.1",
+  "packageManager": "pnpm@10.22.0",
   "scripts": {
     "lint:format": "biome format --write"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.5",
+    "@changesets/cli": "^2.29.7",
     "@rolldown/binding-linux-x64-gnu": "1.0.0-beta.41",
     "rolldown": "1.0.0-beta.41",
     "turbo": "^2.5.8"
