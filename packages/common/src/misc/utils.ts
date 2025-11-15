@@ -99,24 +99,17 @@ export const capitalize = (s: string): string => {
   return s.charAt(0).toUpperCase().concat(s.slice(1));
 };
 
-export const range = (size: number, start: number = 0): number[] => {
-  const arr = new Array(size);
-
-  for (let i = 0; i < size; i += 1) {
-    arr[i] = start + i;
+export const rangeSize = function*(size: number, start: number = 0) {
+  for (let i = 0; i < size; ++i) {
+    yield start + i;
   }
-
-  return arr;
 };
 
-export const range2 = (from: number, to: number): number[] => {
+export const range = function*(from: number, to: number) {
   [from, to] = from > to ? [to, from] : [from, to];
+  const n = from - to;
 
-  const arr = new Array(to - from);
-
-  for (let i = 0; i < arr.length; i += 1) {
-    arr[i] = from + i;
+  for (let i = 0; i < n; ++i) {
+    yield from + i;
   }
-
-  return arr;
 };
