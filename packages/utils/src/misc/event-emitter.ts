@@ -1,12 +1,5 @@
 import { Disposer } from './disposer';
 
-export type HandlerTypes<P extends string> = Record<
-  P,
-  {
-    (...args: any[]): any;
-  }
->;
-
 type Handlers<T extends object> = {
   [K in keyof T]: T[K];
 };

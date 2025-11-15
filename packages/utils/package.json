@@ -1,7 +1,7 @@
 {
-  "name": "@repo/common",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@yandzee/utils",
+  "private": false,
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "tsc --watch",
