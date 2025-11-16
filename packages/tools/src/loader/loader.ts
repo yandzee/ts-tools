@@ -1,8 +1,8 @@
 // Author: Renat Tuktarov <yandzeek@gmail.com>, 2025
 
-import { EventEmitter } from '@repo/common/misc/event-emitter';
-import { Timer } from '@repo/common/misc/timer';
-import { dumb, type Retrier } from '@repo/common/misc/retry';
+import { EventEmitter } from '@yandzee/events';
+import { Timer } from '@yandzee/utils/timer';
+import { dumb, type Retrier } from '@yandzee/utils/retry';
 
 export enum Event {
   DataReady = 'data-ready',
