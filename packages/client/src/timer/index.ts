@@ -1,5 +1,5 @@
-import { EventEmitter } from '@yandzee/events';
-import type { DisposeFn } from '@yandzee/utils/disposer';
+import { EventEmitter } from '~/events';
+import type { DisposeFn } from '~/disposer';
 
 export enum TimerEvent {
   Started = 'started',

@@ -27,6 +27,31 @@ importers:
         specifier: ^2.5.8
         version: 2.6.1
 
+  packages/client:
+    dependencies:
+      '@repo/tsconfig':
+        specifier: workspace:^
+        version: link:../tsconfig
+      '@types/node':
+        specifier: ^24.10.1
+        version: 24.10.1
+      es-toolkit:
+        specifier: ^1.41.0
+        version: 1.41.0
+      zod:
+        specifier: ^4.1.13
+        version: 4.1.13
+    devDependencies:
+      typescript:
+        specifier: ~5.9.3
+        version: 5.9.3
+      vite:
+        specifier: npm:rolldown-vite@7.2.2
+        version: rolldown-vite@7.2.2(@types/node@24.10.1)(esbuild@0.25.12)
+      vitest:
+        specifier: ^4.0.8
+        version: 4.0.8(@types/node@24.10.1)(esbuild@0.25.12)
+
   packages/common:
     dependencies:
       '@types/node':
@@ -1514,6 +1539,9 @@ packages:
     engines: {node: '>=8'}
     hasBin: true
 
+  zod@4.1.13:
+    resolution: {integrity: sha512-AvvthqfqrAhNH9dnfmrfKzX5upOdjUVJYFqNSlkmGf64gRaTzlPwz99IHYnVs28qYAybvAlBV+H7pn0saFY4Ig==}
+
 snapshots:
 
   '@babel/generator@7.28.5':
@@ -2703,3 +2731,5 @@ snapshots:
     dependencies:
       siginfo: 2.0.0
       stackback: 0.0.2
+
+  zod@4.1.13: {}

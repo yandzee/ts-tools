@@ -1,4 +1,4 @@
-import { ExtensibleFunction } from '@yandzee/utils/types';
+import { ExtensibleFunction } from '~/types';
 
 export type DisposeFn = () => void;
 

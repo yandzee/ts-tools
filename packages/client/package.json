@@ -1,10 +1,10 @@
 {
-  "name": "@yandzee/tools",
+  "name": "@yandzee/client",
   "private": false,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "tsc --watch",
+    "dev": "tsc --watch --noEmit",
     "build": "tsc && vite build",
     "check:types": "tsc --noEmit",
     "check:lint": "biome check",
@@ -19,7 +19,9 @@
     "vitest": "^4.0.8"
   },
   "dependencies": {
+    "@repo/tsconfig": "workspace:^",
     "@types/node": "^24.10.1",
-    "es-toolkit": "^1.41.0"
+    "es-toolkit": "^1.41.0",
+    "zod": "^4.1.13"
   }
 }
