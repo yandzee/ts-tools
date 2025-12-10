@@ -29,7 +29,7 @@ export class Timer extends EventEmitter<Handlers> {
     this.duration = dur;
   }
 
-  public get isSet() {
+  public get isSet(): boolean {
     return this.timerDisposer != null;
   }
 

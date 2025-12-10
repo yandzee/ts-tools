@@ -16,7 +16,7 @@ importers:
         version: 2.2.5
       '@changesets/cli':
         specifier: ^2.29.7
-        version: 2.29.7(@types/node@24.10.1)
+        version: 2.29.7(@types/node@24.10.2)
       '@rolldown/binding-linux-x64-gnu':
         specifier: 1.0.0-beta.41
         version: 1.0.0-beta.41
@@ -29,12 +29,6 @@ importers:
 
   packages/client:
     dependencies:
-      '@repo/tsconfig':
-        specifier: workspace:^
-        version: link:../tsconfig
-      '@types/node':
-        specifier: ^24.10.1
-        version: 24.10.1
       es-toolkit:
         specifier: ^1.41.0
         version: 1.41.0
@@ -42,44 +36,6 @@ importers:
         specifier: ^4.1.13
         version: 4.1.13
     devDependencies:
-      typescript:
-        specifier: ~5.9.3
-        version: 5.9.3
-      vite:
-        specifier: npm:rolldown-vite@7.2.2
-        version: rolldown-vite@7.2.2(@types/node@24.10.1)(esbuild@0.25.12)
-      vitest:
-        specifier: ^4.0.8
-        version: 4.0.8(@types/node@24.10.1)(esbuild@0.25.12)
-
-  packages/common:
-    dependencies:
-      '@types/node':
-        specifier: ^24.10.1
-        version: 24.10.1
-      es-toolkit:
-        specifier: ^1.41.0
-        version: 1.41.0
-    devDependencies:
-      typescript:
-        specifier: ~5.9.3
-        version: 5.9.3
-      vite:
-        specifier: npm:rolldown-vite@7.2.2
-        version: rolldown-vite@7.2.2(@types/node@24.10.1)(esbuild@0.25.12)
-      vitest:
-        specifier: ^4.0.8
-        version: 4.0.8(@types/node@24.10.1)(esbuild@0.25.12)
-
-  packages/events:
-    dependencies:
-      '@yandzee/utils':
-        specifier: workspace:^
-        version: link:../utils
-      es-toolkit:
-        specifier: ^1.41.0
-        version: 1.41.0
-    devDependencies:
       '@repo/tsconfig':
         specifier: workspace:^
         version: link:../tsconfig
@@ -87,42 +43,20 @@ importers:
         specifier: workspace:^
         version: link:../tsdown
       '@types/node':
-        specifier: ^24.10.1
-        version: 24.10.1
+        specifier: ^24.10.2
+        version: 24.10.2
       tsdown:
         specifier: ^0.16.4
         version: 0.16.4(ms@2.1.3)(typescript@5.9.3)
       typescript:
         specifier: ~5.9.3
         version: 5.9.3
+      vite:
+        specifier: npm:rolldown-vite@7.2.2
+        version: rolldown-vite@7.2.2(@types/node@24.10.2)(esbuild@0.25.12)
       vitest:
         specifier: ^4.0.8
-        version: 4.0.8(@types/node@24.10.1)(esbuild@0.25.12)
-
-  packages/loader:
-    dependencies:
-      es-toolkit:
-        specifier: ^1.41.0
-        version: 1.41.0
-    devDependencies:
-      '@repo/tsconfig':
-        specifier: workspace:^
-        version: link:../tsconfig
-      '@repo/tsdown':
-        specifier: workspace:^
-        version: link:../tsdown
-      '@types/node':
-        specifier: ^24.10.1
-        version: 24.10.1
-      tsdown:
-        specifier: ^0.16.4
-        version: 0.16.4(ms@2.1.3)(typescript@5.9.3)
-      typescript:
-        specifier: ~5.9.3
-        version: 5.9.3
-      vitest:
-        specifier: ^4.0.8
-        version: 4.0.8(@types/node@24.10.1)(esbuild@0.25.12)
+        version: 4.0.8(@types/node@24.10.2)(esbuild@0.25.12)
 
   packages/tsconfig: {}
 
@@ -131,25 +65,6 @@ importers:
       tsdown:
         specifier: ^0.16.4
         version: 0.16.4(ms@2.1.3)(typescript@5.9.3)
-
-  packages/utils:
-    dependencies:
-      '@types/node':
-        specifier: ^24.10.1
-        version: 24.10.1
-      es-toolkit:
-        specifier: ^1.41.0
-        version: 1.41.0
-    devDependencies:
-      typescript:
-        specifier: ~5.9.3
-        version: 5.9.3
-      vite:
-        specifier: npm:rolldown-vite@7.2.2
-        version: rolldown-vite@7.2.2(@types/node@24.10.1)(esbuild@0.25.12)
-      vitest:
-        specifier: ^4.0.8
-        version: 4.0.8(@types/node@24.10.1)(esbuild@0.25.12)
 
 packages:
 
@@ -790,8 +705,8 @@ packages:
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
-  '@types/node@24.10.1':
-    resolution: {integrity: sha512-GNWcUTRBgIRJD5zj+Tq0fKOJ5XZajIiBroOF0yvj2bSU1WvNdYS/dn9UxwsujGW4JX06dnHyjV2y9rRaybH0iQ==}
+  '@types/node@24.10.2':
+    resolution: {integrity: sha512-WOhQTZ4G8xZ1tjJTvKOpyEVSGgOTvJAfDK3FNFgELyaTpzhdgHVHeqW8V+UJvzF5BT+/B54T/1S2K6gd9c7bbA==}
 
   '@vitest/expect@4.0.8':
     resolution: {integrity: sha512-Rv0eabdP/xjAHQGr8cjBm+NnLHNoL268lMDK85w2aAGLFoVKLd8QGnVon5lLtkXQCoYaNL0wg04EGnyKkkKhPA==}
@@ -1631,7 +1546,7 @@ snapshots:
     dependencies:
       '@changesets/types': 6.1.0
 
-  '@changesets/cli@2.29.7(@types/node@24.10.1)':
+  '@changesets/cli@2.29.7(@types/node@24.10.2)':
     dependencies:
       '@changesets/apply-release-plan': 7.0.13
       '@changesets/assemble-release-plan': 6.0.9
@@ -1647,7 +1562,7 @@ snapshots:
       '@changesets/should-skip-package': 0.1.2
       '@changesets/types': 6.1.0
       '@changesets/write': 0.4.0
-      '@inquirer/external-editor': 1.0.3(@types/node@24.10.1)
+      '@inquirer/external-editor': 1.0.3(@types/node@24.10.2)
       '@manypkg/get-packages': 1.1.3
       ansi-colors: 4.1.3
       ci-info: 3.9.0
@@ -1840,12 +1755,12 @@ snapshots:
   '@esbuild/win32-x64@0.25.12':
     optional: true
 
-  '@inquirer/external-editor@1.0.3(@types/node@24.10.1)':
+  '@inquirer/external-editor@1.0.3(@types/node@24.10.2)':
     dependencies:
       chardet: 2.1.1
       iconv-lite: 0.7.0
     optionalDependencies:
-      '@types/node': 24.10.1
+      '@types/node': 24.10.2
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
@@ -2065,7 +1980,7 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
-  '@types/node@24.10.1':
+  '@types/node@24.10.2':
     dependencies:
       undici-types: 7.16.0
 
@@ -2078,13 +1993,13 @@ snapshots:
       chai: 6.2.1
       tinyrainbow: 3.0.3
 
-  '@vitest/mocker@4.0.8(rolldown-vite@7.2.2(@types/node@24.10.1)(esbuild@0.25.12))':
+  '@vitest/mocker@4.0.8(rolldown-vite@7.2.2(@types/node@24.10.2)(esbuild@0.25.12))':
     dependencies:
       '@vitest/spy': 4.0.8
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: rolldown-vite@7.2.2(@types/node@24.10.1)(esbuild@0.25.12)
+      vite: rolldown-vite@7.2.2(@types/node@24.10.2)(esbuild@0.25.12)
 
   '@vitest/pretty-format@4.0.8':
     dependencies:
@@ -2477,7 +2392,7 @@ snapshots:
       - ms
       - oxc-resolver
 
-  rolldown-vite@7.2.2(@types/node@24.10.1)(esbuild@0.25.12):
+  rolldown-vite@7.2.2(@types/node@24.10.2)(esbuild@0.25.12):
     dependencies:
       '@oxc-project/runtime': 0.96.0
       fdir: 6.5.0(picomatch@4.0.3)
@@ -2487,7 +2402,7 @@ snapshots:
       rolldown: 1.0.0-beta.47
       tinyglobby: 0.2.15
     optionalDependencies:
-      '@types/node': 24.10.1
+      '@types/node': 24.10.2
       esbuild: 0.25.12
       fsevents: 2.3.3
 
@@ -2685,10 +2600,10 @@ snapshots:
       '@oxc-project/runtime': 0.97.0
       rolldown: 1.0.0-beta.50
 
-  vitest@4.0.8(@types/node@24.10.1)(esbuild@0.25.12):
+  vitest@4.0.8(@types/node@24.10.2)(esbuild@0.25.12):
     dependencies:
       '@vitest/expect': 4.0.8
-      '@vitest/mocker': 4.0.8(rolldown-vite@7.2.2(@types/node@24.10.1)(esbuild@0.25.12))
+      '@vitest/mocker': 4.0.8(rolldown-vite@7.2.2(@types/node@24.10.2)(esbuild@0.25.12))
       '@vitest/pretty-format': 4.0.8
       '@vitest/runner': 4.0.8
       '@vitest/snapshot': 4.0.8
@@ -2705,10 +2620,10 @@ snapshots:
       tinyexec: 0.3.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vite: rolldown-vite@7.2.2(@types/node@24.10.1)(esbuild@0.25.12)
+      vite: rolldown-vite@7.2.2(@types/node@24.10.2)(esbuild@0.25.12)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 24.10.1
+      '@types/node': 24.10.2
     transitivePeerDependencies:
       - esbuild
       - jiti

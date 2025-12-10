@@ -1,4 +1,4 @@
-import { Disposer } from '~/disposer';
+import { Disposer, type DisposeFn } from '~/disposer';
 
 type Handlers<T extends object> = {
   [K in keyof T]: T[K];
@@ -31,7 +31,7 @@ export class EventEmitter<T extends Handlers<any>> {
     return Disposer.new().chain(this.lastDisposerFn);
   }
 
-  public on<K extends keyof T>(event: K, handler: T[K]) {
+  public on<K extends keyof T>(event: K, handler: T[K]): DisposeFn {
     if (!this.onHandlers.has(event)) {
       this.onHandlers.set(event, new Set());
     }
@@ -46,7 +46,7 @@ export class EventEmitter<T extends Handlers<any>> {
     return this.lastDisposerFn;
   }
 
-  public once<K extends keyof T>(event: K, handler: T[K]) {
+  public once<K extends keyof T>(event: K, handler: T[K]): DisposeFn {
     if (!this.onceHandlers.has(event)) {
       this.onceHandlers.set(event, new Set());
     }
@@ -61,7 +61,7 @@ export class EventEmitter<T extends Handlers<any>> {
     return this.lastDisposerFn;
   }
 
-  public off<K extends keyof T>(event?: K, handler?: T[K] | null) {
+  public off<K extends keyof T>(event?: K, handler?: T[K] | null): void {
     if (event == null) {
       this.offEverything();
       return;
@@ -77,7 +77,7 @@ export class EventEmitter<T extends Handlers<any>> {
     this.onceHandlers.get(event)?.delete(handler);
   }
 
-  public emit<K extends keyof T>(event: K, ...args: Parameters<T[K]>) {
+  public emit<K extends keyof T>(event: K, ...args: Parameters<T[K]>): void {
     const onHandlers = this.onHandlers.get(event);
     const onceHandlers = this.onceHandlers.get(event);
 
@@ -97,7 +97,7 @@ export class EventEmitter<T extends Handlers<any>> {
     }
   }
 
-  public offEverything() {
+  public offEverything(): void {
     this.onHandlers.clear();
     this.onceHandlers.clear();
   }
@@ -118,7 +118,7 @@ export class EventEmitter<T extends Handlers<any>> {
     return cached;
   }
 
-  protected moveCachedEventsTo(targetEmitter: EventEmitter<T>) {
+  protected moveCachedEventsTo(targetEmitter: EventEmitter<T>): void {
     this.getCachedEvents().forEach((payloads, evt) => {
       payloads.forEach((payload) => {
         targetEmitter.emit(evt, ...(payload as any));
@@ -127,7 +127,7 @@ export class EventEmitter<T extends Handlers<any>> {
     });
   }
 
-  protected dropCachedEvents<K extends keyof T>(eventsToDrop: K[]) {
+  protected dropCachedEvents<K extends keyof T>(eventsToDrop: K[]): void {
     eventsToDrop.forEach((evt) => {
       this.cachedEvents.set(evt, []);
     });

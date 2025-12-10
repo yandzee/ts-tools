@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { Pages } from './pages';
+import { Pages } from '~/data/pages';
 
 // NOTE: [elem, pageIndex, elemIndexInPage, globalElemIndex]
 type ForEachLine<T> = [T, number, number, number];

@@ -1,5 +1,5 @@
 import { HttpClient } from '~/http/client';
-import type { FetchFunction } from './types';
+import type { FetchFunction } from './index';
 
 export interface APIBaseOptions {
   fetch: FetchFunction;

@@ -24,6 +24,7 @@
     "strict": true,
     "noEmit": true,
     "isolatedModules": true,
+    "isolatedDeclarations": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "noUncheckedSideEffectImports": true,

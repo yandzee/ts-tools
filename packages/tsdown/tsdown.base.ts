@@ -1,9 +1,14 @@
 import { defineConfig as _defineConfig } from 'tsdown';
 import type { UserConfig } from 'tsdown';
 
-export const defineConfig = (cfg: UserConfig) => {
-  return _defineConfig([
-    { ...cfg, platform: 'browser' },
-    { ...cfg, platform: 'node' },
-  ]);
+type Options = {
+  browser?: boolean;
+  node?: boolean;
+};
+
+export const defineConfig = (cfg: UserConfig, opts?: Options) => {
+  const browserCfg: UserConfig[] = opts?.browser === false ? [] : [{ ...cfg, platform: 'browser' }];
+  const nodeCfg: UserConfig[] = opts?.node === false ? [] : [{ ...cfg, platform: 'node' }];
+
+  return _defineConfig(browserCfg.concat(nodeCfg));
 };
