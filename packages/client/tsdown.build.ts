@@ -23,6 +23,7 @@ export default defineConfig(
     dts: {
       sourcemap: false,
     },
+    exports: true,
   },
   { node: false },
 );
