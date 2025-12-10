@@ -1,4 +1,4 @@
-import { range2 } from '~/misc/utils';
+import { range } from '~/utils';
 
 export interface VScrollerProps {
   amount: number;
@@ -53,13 +53,14 @@ export class VirtualScroller {
 
     currentIndices.delete(VirtualScroller.INVISIBLE_VIRTUAL_INDEX);
     const maxPossibleIdx = Math.max(0, this.props.amount - 1);
-    const requiredIndices = new Set(range2(firstVisibleIdx, lastVisibleIdx + 1));
+    const requiredIndices = new Set(Array.from(range(firstVisibleIdx, lastVisibleIdx + 1)));
 
     let offset = 1;
 
     // NOTE: We are here when we have overlapping: some items placed well
     for (let realIdx = 0; realIdx < this.lastPositions.length; realIdx += 1) {
       const virtualIdx = this.lastPositions[realIdx];
+      if (virtualIdx == null) continue;
 
       if (virtualIdx >= firstVisibleIdx && virtualIdx <= lastVisibleIdx) {
         requiredIndices.delete(virtualIdx);

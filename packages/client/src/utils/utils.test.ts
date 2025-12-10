@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { isRecord } from './types';
+import { isRecord } from '~/types';
 
 class Custom {
   public m() {}

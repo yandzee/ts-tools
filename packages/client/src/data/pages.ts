@@ -1,5 +1,5 @@
+import { rangeSize } from '~/utils';
 import type { Page } from './page';
-import { range } from '~/misc/utils';
 
 export class Pages<T> {
   private pages: Map<number, T[]> = new Map();
@@ -195,12 +195,12 @@ export class Pages<T> {
       }
 
       const nextPage = this.pages.get(currentPageIdx + 1) || [];
-      range(currentPage.length - pageSize).forEach(() => {
+      for (const _ of rangeSize(currentPage.length - pageSize)) {
         const evicted = currentPage.pop();
-        if (evicted == null) return;
+        if (evicted == null) continue;
 
         nextPage.unshift(evicted);
-      });
+      }
 
       if (nextPage.length <= pageSize) break;
 

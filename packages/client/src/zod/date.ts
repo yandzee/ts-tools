@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { isValidDate } from '~/misc/utils';
+import { isValidDate } from '~/utils';
 
 export const date = z.iso
   .datetime()

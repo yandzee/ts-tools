@@ -1,4 +1,4 @@
-import { isString } from '~/misc/types';
+import { isString } from '~/types';
 
 export const getInputEventValue = (e: InputEvent): string => {
   const target = e.target;

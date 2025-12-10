@@ -1,4 +1,4 @@
-import type { Disposer } from '~/misc/disposer';
+import type { Disposer } from '~/disposer';
 
 export enum Severity {
   Error = 'error',

@@ -1,4 +1,4 @@
-import { isArray } from '~/misc/types';
+import { isArray } from '~/types';
 
 import { HttpMethod, type FetchFunction } from './types';
 import { HTTPResult } from './result';
@@ -7,7 +7,7 @@ export type Options = {
   fetch: FetchFunction;
   cors: boolean;
   baseURL?: string;
-  origin?: string;
+  origin?: string | undefined;
   timeout?: number;
   headers?: HeadersInit;
 };
@@ -101,7 +101,7 @@ export class HttpClient {
       body,
       mode: this.opts.cors ? 'cors' : 'same-origin',
       headers,
-      signal: controller?.signal,
+      signal: controller?.signal || null,
       credentials: this.opts.cors ? 'include' : 'same-origin',
     });
 

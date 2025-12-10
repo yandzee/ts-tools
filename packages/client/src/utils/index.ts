@@ -1,5 +1,4 @@
-import { camelCase, snakeCase, isFunction } from 'es-toolkit';
-import { isRecord } from './types';
+import { camelCase, snakeCase, isFunction, isPlainObject } from 'es-toolkit';
 
 export type KeyTransformHook = (key: string, path: string[]) => string | null;
 
@@ -24,7 +23,7 @@ export const transformObjectKeys = (
     return obj;
   }
 
-  if (isRecord(obj)) {
+  if (isPlainObject(obj)) {
     return Object.entries(obj).reduce((acc: any, pair: [string, any]) => {
       const key = pair[0];
       const transformedKey = hook?.(key, path) ?? tr(key);

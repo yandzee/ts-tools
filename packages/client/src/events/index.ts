@@ -1,4 +1,4 @@
-import { Disposer } from '@yandzee/utils/disposer';
+import { Disposer } from '~/disposer';
 
 type Handlers<T extends object> = {
   [K in keyof T]: T[K];

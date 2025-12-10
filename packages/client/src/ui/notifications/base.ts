@@ -1,4 +1,5 @@
-import { isRecord, isString } from '~/misc/types';
+// import { isRecord, isString } from '~/misc/types';
+import { isString, isPlainObject } from 'es-toolkit';
 import {
   type NotificationDescriptor,
   type NotificationHandle,
@@ -74,15 +75,13 @@ export class Notifications {
   }
 
   public getDescriptor(msg: any): NotificationDescriptor | null {
-    if (msg == null || !isRecord(msg)) return null;
+    if (msg == null || !isPlainObject(msg)) return null;
 
-    const chelnokId = msg.chelnokId || msg.detail?.chelnokId || (msg.opts != null && msg.id);
+    if (!Object.hasOwn(msg, 'id')) return null;
+    const msgId = msg['id'];
 
-    if (!!chelnokId && isString(chelnokId)) {
-      return this.descriptors.get(chelnokId) ?? null;
-    }
-
-    return null;
+    if (!isString(msgId)) return null;
+    return this.descriptors.get(msgId) ?? null;
   }
 
   private generateNotificationId() {
