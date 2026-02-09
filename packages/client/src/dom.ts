@@ -1,6 +1,6 @@
 import { isString } from '~/types';
 
-export const getEventInputValue = (e: InputEvent): string => {
+export const getInputEventValue = (e: InputEvent): string => {
   const target = e.target;
   if (target == null || !(target instanceof Element)) return '';
 
