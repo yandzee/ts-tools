@@ -1,33 +1,19 @@
-import {
-  type NotificationDescriptor,
-  type NotificationHandle,
-  type NotificationsImpl,
-  type NotificationOptions,
-  Severity,
-} from '~/ui/notifications';
+import type {
+  BackendNotificationHandle,
+  NotificationDescriptor,
+  NotificationHandle,
+  NotificationOptions,
+  NotificationsBackend,
+} from './index';
 
 export class Notifications {
-  private readonly backends: Map<string, NotificationsImpl> = new Map();
-  private descriptorCounters: Map<string, number> = new Map();
+  private readonly backends: Map<string, NotificationsBackend> = new Map();
 
   public readonly descriptors: Map<string, NotificationDescriptor> = new Map();
 
-  public registerBackend(kind: string, impl: NotificationsImpl): boolean {
+  public registerBackend(kind: string, impl: NotificationsBackend): boolean {
     const isReplaced = this.backends.has(kind);
-
     this.backends.set(kind, impl);
-
-    impl.onNotificationHide((descId, timeouted) => {
-      console.log(`NotificationsUI: notification hide`, descId, timeouted);
-      const counter = Math.max(0, (this.descriptorCounters.get(descId) || 0) - 1);
-
-      if (counter === 0) {
-        this.descriptors.delete(descId);
-        this.descriptorCounters.delete(descId);
-      } else {
-        this.descriptorCounters.set(descId, counter);
-      }
-    });
 
     return isReplaced;
   }
@@ -36,38 +22,23 @@ export class Notifications {
     return this.backends.delete(kind);
   }
 
-  public showError(datum: any, opts?: NotificationOptions): NotificationHandle {
-    const baseOpts = {
-      severity: Severity.Error,
-      datum,
-      title: 'Error',
-      closable: true,
-      timeout: 0,
-    };
-
-    Object.assign(baseOpts, opts || {});
-    return this.show(baseOpts);
-  }
-
-  public show(n: NotificationOptions): NotificationHandle {
-    const desc: NotificationDescriptor = {
-      opts: n,
+  public show(opts: NotificationOptions): NotificationHandle {
+    const descriptor: NotificationDescriptor = {
+      opts,
       id: this.generateNotificationId(),
     };
 
-    this.descriptors.set(desc.id, desc);
-    this.descriptorCounters.set(desc.id, 1);
-
-    const handles: NotificationHandle[] = [];
+    this.descriptors.set(descriptor.id, descriptor);
+    const handles: BackendNotificationHandle[] = [];
 
     this.backends.forEach((impl) => {
-      handles.push(impl.show(desc));
+      handles.push(impl.show(opts));
     });
 
     return {
-      desc,
+      descriptor,
       hide: (): boolean => {
-        return handles.some((h) => h.hide());
+        return handles.reduce((hidden, h) => hidden || h.hide(), false);
       },
     };
   }

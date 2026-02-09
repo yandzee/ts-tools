@@ -1,6 +1,6 @@
 import { isArray } from '~/types';
 
-import { HttpMethod, type FetchFunction } from './index';
+import { type FetchFunction, HttpMethod } from './index';
 import { HTTPResult } from './result';
 
 export type Options = {

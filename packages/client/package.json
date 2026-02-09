@@ -4,7 +4,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "scripts": {
     "dev": "tsc --watch --noEmit",
@@ -15,62 +15,22 @@
     "check:test": "vitest"
   },
   "exports": {
-    "./data/page": {
-      "default": "./dist/data/page.js",
-      "types": "./dist/data/page.d.ts"
-    },
-    "./data/pages": {
-      "default": "./dist/data/pages.js",
-      "types": "./dist/data/pages.d.ts"
-    },
-    "./disposer": {
-      "default": "./dist/disposer.js",
-      "types": "./dist/disposer.d.ts"
-    },
-    "./dom": {
-      "default": "./dist/dom.js",
-      "types": "./dist/dom.d.ts"
-    },
-    "./events": {
-      "default": "./dist/events.js",
-      "types": "./dist/events.d.ts"
-    },
-    "./http": {
-      "default": "./dist/http/index.js",
-      "types": "./dist/http/index.d.ts"
-    },
-    "./http/api": {
-      "default": "./dist/http/api.js",
-      "types": "./dist/http/api.d.ts"
-    },
-    "./http/client": {
-      "default": "./dist/http/client.js",
-      "types": "./dist/http/client.d.ts"
-    },
-    "./http/result": {
-      "default": "./dist/http/result.js",
-      "types": "./dist/http/result.d.ts"
-    },
-    "./loader": {
-      "default": "./dist/loader.js",
-      "types": "./dist/loader.d.ts"
-    },
-    "./timer": {
-      "default": "./dist/timer.js",
-      "types": "./dist/timer.d.ts"
-    },
-    "./types": {
-      "default": "./dist/types.js",
-      "types": "./dist/types.d.ts"
-    },
-    "./utils": {
-      "default": "./dist/utils/index.js",
-      "types": "./dist/utils/index.d.ts"
-    },
-    "./zod/date": {
-      "default": "./dist/zod/date.js",
-      "types": "./dist/zod/date.d.ts"
-    }
+    "./data/page": "./dist/data/page.js",
+    "./data/pages": "./dist/data/pages.js",
+    "./disposer": "./dist/disposer.js",
+    "./dom": "./dist/dom.js",
+    "./events": "./dist/events.js",
+    "./http": "./dist/http/index.js",
+    "./http/api": "./dist/http/api.js",
+    "./http/client": "./dist/http/client.js",
+    "./http/result": "./dist/http/result.js",
+    "./loader": "./dist/loader.js",
+    "./notifications": "./dist/notifications.js",
+    "./timer": "./dist/timer.js",
+    "./types": "./dist/types.js",
+    "./utils": "./dist/utils/index.js",
+    "./zod/date": "./dist/zod/date.js",
+    "./package.json": "./package.json"
   },
   "devDependencies": {
     "@repo/tsconfig": "workspace:^",

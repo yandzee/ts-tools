@@ -1,4 +1,4 @@
-import { Disposer, type DisposeFn } from '~/disposer';
+import { type DisposeFn, Disposer } from '~/disposer';
 
 type Handlers<T extends object> = {
   [K in keyof T]: T[K];

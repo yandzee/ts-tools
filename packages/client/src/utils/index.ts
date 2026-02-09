@@ -1,10 +1,10 @@
-import { camelCase, snakeCase, isFunction, isPlainObject } from 'es-toolkit';
+import { camelCase, isFunction, isPlainObject, snakeCase } from 'es-toolkit';
 
 export type KeyTransformHook = (key: string, path: string[]) => string | null;
 
 export const transformObjectKeys = (
   obj: any,
-  tr: (_: string) => string,
+  keyMapper: (_: string) => string,
   hook?: (key: string, path: string[]) => string | null,
   path: string[] = [],
 ): any => {
@@ -15,7 +15,7 @@ export const transformObjectKeys = (
 
   if (Array.isArray(obj)) {
     return obj.map((v: any, idx: any) => {
-      return transformObjectKeys(v, tr, hook, path.concat(idx.toString()));
+      return transformObjectKeys(v, keyMapper, hook, path.concat(idx.toString()));
     });
   }
 
@@ -26,8 +26,8 @@ export const transformObjectKeys = (
   if (isPlainObject(obj)) {
     return Object.entries(obj).reduce((acc: any, pair: [string, any]) => {
       const key = pair[0];
-      const transformedKey = hook?.(key, path) ?? tr(key);
-      const transformedValue = transformObjectKeys(pair[1], tr, hook, path.concat(key));
+      const transformedKey = hook?.(key, path) ?? keyMapper(key);
+      const transformedValue = transformObjectKeys(pair[1], keyMapper, hook, path.concat(key));
 
       return Object.assign(acc, {
         [transformedKey]: transformedValue,
@@ -98,13 +98,13 @@ export const capitalize = (s: string): string => {
   return s.charAt(0).toUpperCase().concat(s.slice(1));
 };
 
-export const rangeSize = function*(size: number, start: number = 0) {
+export const rangeSize = function* (size: number, start: number = 0) {
   for (let i = 0; i < size; ++i) {
     yield start + i;
   }
 };
 
-export const range = function*(from: number, to: number) {
+export const range = function* (from: number, to: number) {
   [from, to] = from > to ? [to, from] : [from, to];
   const n = from - to;
 
