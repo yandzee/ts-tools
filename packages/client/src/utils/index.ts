@@ -1,4 +1,4 @@
-import { camelCase, snakeCase, isFunction, isPlainObject } from 'es-toolkit';
+import { camelCase, isFunction, isPlainObject, snakeCase } from 'es-toolkit';
 
 export type KeyTransformHook = (key: string, path: string[]) => string | null;
 
@@ -98,13 +98,13 @@ export const capitalize = (s: string): string => {
   return s.charAt(0).toUpperCase().concat(s.slice(1));
 };
 
-export const rangeSize = function*(size: number, start: number = 0) {
+export const rangeSize = function* (size: number, start: number = 0) {
   for (let i = 0; i < size; ++i) {
     yield start + i;
   }
 };
 
-export const range = function*(from: number, to: number) {
+export const range = function* (from: number, to: number) {
   [from, to] = from > to ? [to, from] : [from, to];
   const n = from - to;
 

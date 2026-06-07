@@ -1,8 +1,8 @@
 // Author: Renat Tuktarov <yandzeek@gmail.com>, 2025
 
 import { EventEmitter } from '~/events';
-import { Timer } from '~/timer';
 import { dumb, type Retrier } from '~/retry';
+import { Timer } from '~/timer';
 
 export enum Event {
   DataReady = 'data-ready',

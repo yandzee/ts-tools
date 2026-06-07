@@ -1,5 +1,3 @@
-import type { Disposer } from '~/disposer';
-
 export enum Severity {
   Error = 'error',
   Warning = 'warn',
@@ -24,16 +22,19 @@ export type NotificationDescriptor = {
   id: string;
 };
 
-export interface NotificationHandle {
-  desc: NotificationDescriptor;
+export interface BackendNotificationHandle {
   hide: () => boolean;
+}
+
+export interface NotificationHandle extends BackendNotificationHandle {
+  descriptor: () => NotificationDescriptor;
 }
 
 export type NotificationHideCallback = (descId: string, timeouted: boolean) => void;
 
-export interface NotificationsImpl {
-  show: (n: NotificationDescriptor) => NotificationHandle;
+export interface NotificationsBackend {
+  show: (opts: NotificationOptions) => BackendNotificationHandle;
   clear: (group?: string) => void;
-
-  onNotificationHide: (fn: NotificationHideCallback) => Disposer;
 }
+
+export { Notifications } from './base';

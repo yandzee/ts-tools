@@ -1,4 +1,4 @@
-import { describe, test, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { isRecord } from '~/types';
 
 class Custom {
@@ -19,7 +19,7 @@ describe('utils', () => {
       isRecord(undefined),
       isRecord(123),
       isRecord(() => {}),
-      isRecord(function () {}),
+      isRecord(() => {}),
       isRecord(new Date()),
       isRecord(new Function()),
       isRecord(new Map()),

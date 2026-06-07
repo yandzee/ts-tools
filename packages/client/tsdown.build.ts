@@ -14,6 +14,7 @@ export default defineConfig(
       loader: 'src/loader/index.ts',
       timer: 'src/timer/index.ts',
       types: 'src/types/index.ts',
+      notifications: 'src/notifications/index.ts',
       'utils/index': 'src/utils/index.ts',
       'zod/date': 'src/zod/date.ts',
       dom: 'src/dom.ts',
