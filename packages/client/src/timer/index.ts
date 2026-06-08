@@ -80,15 +80,23 @@ export class Timer extends EventEmitter<Handlers> {
     return this.start();
   }
 
-  public reset(ms?: number): this {
+  public reset(ms?: number, shouldContinue?: boolean): this {
+    const wasRunning = this.isSet;
     this.stop();
 
     if (ms != null) {
       this._duration = ms;
     }
 
-    this.start();
+    if (!!shouldContinue && wasRunning) {
+      this.start();
+    }
+
     return this;
+  }
+
+  public restart(): this {
+    return this.stop().start();
   }
 
   protected startTimer(fn: TimerFn, ms: number): DisposeFn {
