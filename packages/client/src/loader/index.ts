@@ -73,8 +73,6 @@ export class Loader<T, Q, E = Error> extends EventEmitter<Events<T, Q, E>> {
     return retrier
       .execute((ctx) => {
         this.emit(Event.LoadingAttempt, q, ctx.attempt);
-        console.log(`Loader: attempt ${ctx.attempt}`);
-
         return this.opts.loadFn(q);
       })
       .then((d) => {

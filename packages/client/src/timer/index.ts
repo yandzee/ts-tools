@@ -17,7 +17,7 @@ export type TimerFn = () => void;
 
 export class Timer extends EventEmitter<Handlers> {
   protected timerDisposer: DisposeFn | null = null;
-  private duration: number;
+  private _duration: number;
 
   public static new(dur: number): Timer {
     return new Timer(dur);
@@ -26,11 +26,15 @@ export class Timer extends EventEmitter<Handlers> {
   constructor(dur: number) {
     super();
 
-    this.duration = dur;
+    this._duration = dur;
   }
 
   public get isSet(): boolean {
     return this.timerDisposer != null;
+  }
+
+  public get duration() {
+    return this._duration;
   }
 
   public onStarted(fn: () => void): this {
@@ -67,7 +71,7 @@ export class Timer extends EventEmitter<Handlers> {
     this.timerDisposer = this.startTimer(() => {
       this.timerDisposer = null;
       this.emit(TimerEvent.Timeout);
-    }, this.duration);
+    }, this._duration);
 
     return this;
   }
@@ -80,7 +84,7 @@ export class Timer extends EventEmitter<Handlers> {
     this.stop();
 
     if (ms != null) {
-      this.duration = ms;
+      this._duration = ms;
     }
 
     this.start();

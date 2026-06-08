@@ -1,5 +1,5 @@
-import { defineConfig as _defineConfig } from 'tsdown';
 import type { UserConfig } from 'tsdown';
+import { defineConfig as _defineConfig } from 'tsdown';
 
 type Options = {
   browser?: boolean;
