@@ -47,7 +47,6 @@ export class HttpClient {
     const [req, beforeRequest] = this.buildRequest(method, path, data, cfg);
     beforeRequest?.();
 
-    console.log(`Calling fetch`, this.opts.fetch, req, method, path, data, cfg);
     return this.opts.fetch(req).then(HTTPResult.from);
   }
 
