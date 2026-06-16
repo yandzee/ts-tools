@@ -1,12 +1,13 @@
 import { ExtensibleFunction } from '~/types';
 
 export type DisposeFn = () => void;
+export type AnyDisposer = null | undefined | DisposeFn | Disposer;
 
 export class Disposer extends ExtensibleFunction {
   private subdisposers: Set<DisposeFn> = new Set();
 
-  public static chain(fn: DisposeFn): Disposer {
-    return new Disposer().chain(fn);
+  public static chain(...fns: AnyDisposer[]): Disposer {
+    return new Disposer().chainArray(fns);
   }
 
   public static new(): Disposer {
@@ -23,10 +24,16 @@ export class Disposer extends ExtensibleFunction {
     });
   }
 
-  public chain(fn: DisposeFn | Disposer | undefined): Disposer {
-    if (!fn) return this;
+  public chain(...fns: AnyDisposer[]): Disposer {
+    return this.chainArray(fns);
+  }
 
-    this.subdisposers.add(fn instanceof Disposer ? fn.asFunction() : fn);
+  public chainArray(fns: AnyDisposer[]): this {
+    for (const fn of fns) {
+      if (fn == null) continue;
+
+      this.subdisposers.add(fn instanceof Disposer ? fn.asFunction() : fn);
+    }
 
     return this;
   }
