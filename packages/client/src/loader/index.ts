@@ -32,8 +32,8 @@ export type Options<T, Q> = {
   loadFn: (q: Q) => Promise<T>;
   key: string;
   graceDelay?: number;
-  cacheReader?: (q: Q) => T | null;
-  cacheWriter?: (d: T, q: Q) => void;
+  cacheReader?: (q: Q) => T | Promise<T> | null | Promise<null>;
+  cacheWriter?: (d: T, q: Q) => void | Promise<void>;
   caching?: boolean;
   retrier?: Retrier;
 };
@@ -51,7 +51,8 @@ export class Loader<T, Q, E = Error> extends EventEmitter<Events<T, Q, E>> {
     this.emit(Event.LoadingTriggered, q);
 
     if (this.opts.cacheReader != null) {
-      const d = this.opts.cacheReader?.(q);
+      const p = this.opts.cacheReader?.(q);
+      const d = p == null ? null : p instanceof Promise ? await p : p;
 
       if (d != null) {
         this.emit(Event.DataReady, d, true, q);
@@ -79,8 +80,8 @@ export class Loader<T, Q, E = Error> extends EventEmitter<Events<T, Q, E>> {
         this.emit(Event.LoadingSuccess, d, q);
         this.emit(Event.DataReady, d, false, q);
 
-        this.opts.cacheWriter?.(d, q);
-        return d;
+        const p = this.opts.cacheWriter?.(d, q);
+        return p == null ? d : p instanceof Promise ? p.then(() => d) : d;
       })
       .catch((err) => {
         this.emit(Event.LoadingFailed, err, q);
