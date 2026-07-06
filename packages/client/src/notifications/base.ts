@@ -36,7 +36,7 @@ export class Notifications {
     });
 
     return {
-      descriptor,
+      descriptor: () => descriptor,
       hide: (): boolean => {
         return handles.reduce((hidden, h) => hidden || h.hide(), false);
       },
